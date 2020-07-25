@@ -1,0 +1,14 @@
+.frame{
+    width: 384px;
+    height: 512px;
+  }
+
+.display--flex{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.margin--10px{
+  margin: 10px 10px;
+}
