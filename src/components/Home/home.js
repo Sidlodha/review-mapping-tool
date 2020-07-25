@@ -18,13 +18,13 @@ function Home(props) {
   const [formFields, setFormFields] = useState({
     mapping_ok: "",
     is_cloth_ok: "",
-    is_person_ok: ""
+    is_person_ok: "",
   });
   useEffect(() => {
     setFormFields({
       is_cloth_ok: image_data.is_cloth_ok || "Yes",
       is_person_ok: image_data.is_person_ok || "Yes",
-      mapping_ok: image_data.mapping_ok || "Yes"
+      mapping_ok: image_data.mapping_ok || "Yes",
     });
   }, [image_data]);
   const [update] = useMutation(POST_IMAGE_CHECK, {
@@ -51,18 +51,22 @@ function Home(props) {
   };
 
   const submit = async () => {
-    if(!formFields.mapping_ok || !formFields.is_cloth_ok || !formFields.is_person_ok){
-      alert("Fill all the details before submiting")
-      return
+    if (
+      !formFields.mapping_ok ||
+      !formFields.is_cloth_ok ||
+      !formFields.is_person_ok
+    ) {
+      alert("Fill all the details before submiting");
+      return;
     }
-      await update({
-        variables: {
-          id: props.props.match.params.id,
-          mapping_ok: formFields.mapping_ok,
-          is_cloth_ok: formFields.is_cloth_ok,
-          is_person_ok: formFields.is_person_ok
-        },
-      });
+    await update({
+      variables: {
+        id: props.props.match.params.id,
+        mapping_ok: formFields.mapping_ok,
+        is_cloth_ok: formFields.is_cloth_ok,
+        is_person_ok: formFields.is_person_ok,
+      },
+    });
   };
 
   const linkChange = (link) => {
@@ -76,7 +80,7 @@ function Home(props) {
         .replace(/[/]/g, "%2F")}?alt=media`;
     }
   };
-  console.log(formFields.is_cloth_ok)
+  console.log(formFields.is_cloth_ok);
 
   return (
     <div>
@@ -116,8 +120,11 @@ function Home(props) {
             alt="No Predicted Back Image"
           />
         </div>
-        <div style={{display: "flex", alignItems: "center"}}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <form>
+            <p style={{ fontSize: "17px", fontWeight: 'bold' }}>
+              The image is {image_data.isLabelled}
+            </p>
             <FormControl className="margin--10px">
               <FormLabel htmlFor="is_cloth_ok">
                 Is Clothing image Ok ?
@@ -163,18 +170,24 @@ function Home(props) {
                 <option value="No">No</option>
               </Select>
             </FormControl>
-            <div style={{ display: "flex", flexDirection: "row" }} className="margin--10px">
-            <Button className="margin--10px" onClick={() => props.nextImage()}>
-              Next
-            </Button>
-            <Button
-              variantColor="green"
+            <div
+              style={{ display: "flex", flexDirection: "row" }}
               className="margin--10px"
-              onClick={submit}
             >
-              Submit
-            </Button>
-          </div>
+              <Button
+                className="margin--10px"
+                onClick={() => props.nextImage()}
+              >
+                Next
+              </Button>
+              <Button
+                variantColor="green"
+                className="margin--10px"
+                onClick={submit}
+              >
+                Submit
+              </Button>
+            </div>
           </form>
         </div>
       </Box>

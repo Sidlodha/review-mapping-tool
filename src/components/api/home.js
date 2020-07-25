@@ -14,7 +14,7 @@ query MyQuery($id: Int!) {
 `;
 export const POST_IMAGE_CHECK = gql`
 mutation MyMutation($id: Int!, $is_cloth_ok: String!, $is_person_ok: String!, $mapping_ok: String!) {
-  update_review_mapping(where: {id: {_eq: $id}}, _set: {is_cloth_ok: $is_cloth_ok, is_person_ok: $is_person_ok, mapping_ok: $mapping_ok}) {
+  update_review_mapping(where: {id: {_eq: $id}}, _set: {is_cloth_ok: $is_cloth_ok, is_person_ok: $is_person_ok, mapping_ok: $mapping_ok, isLabelled: "Labelled"}) {
     affected_rows
   }
 }
