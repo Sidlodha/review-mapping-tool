@@ -180,13 +180,14 @@ function Home(props) {
               >
                 Next
               </Button>
+              {props.props.match.params.id>66992 &&
               <Button
                 variantColor="green"
                 className="margin--10px"
                 onClick={submit}
               >
                 Submit
-              </Button>
+              </Button>}
             </div>
           </form>
         </div>
